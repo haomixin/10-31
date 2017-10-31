@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .div{
+            width: 800px;
+            height: 600px;
+            border: 1px solid #333;
+            margin: 20px auto;
+        }
+        h1{
+            text-align: center;
+        }
+        #name{
+            width: 700px;
+            height: 50px;
+            margin: 15px auto;
+            border: 1px solid red;
+        }
+        #content{
+            width: 700px;
+            height: 150px;
+            margin: 15px auto;
+            border: 1px solid red;
+        }
+        .btn{
+            width: 70px;
+            height: 30px;
+            float: right;
+            margin-top: 200px;
+        }
+        .liu{
+            width: 700px;
+            height: 200px;
+            margin: 55px auto;
+            border: 1px solid palegreen;
+        }
+    </style>
+</head>
+<body>
+<div class="div">
+    <h1>留言板</h1>
+    <textarea id="name"></textarea>
+    <textarea id="content"></textarea>
+    <button class="btn">添加</button>
+    <div class="liu"></div>
+</div>
+<script>
+    $(function(){
+        $(".btn").click(function(){
+            var name1=$("#name").val();
+            var content1=$("#content").val();
+            console.log(name1)
+            if(name1==""||content1==""){
+                alert("请输入为文字")
+            }else{
+                $.ajax({
+                    url:"http://localhost:3000/grenn",
+                    type:"post",
+                    dataType:"json",
+                    data:{tit:name1,con:content1},
+                    success:function(e){
+                        console.log(e);
+
+                    }
+                });
+            }
+        })
+    })
+
+</script>
+</body>
+</html>
